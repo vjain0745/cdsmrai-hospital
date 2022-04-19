@@ -4,7 +4,6 @@ const jwtAuth = require('../utils/jwt');
 const mongo = require('../services/mongoHandlers')
 const responseHandlers = require("../utils/responses");
 
-
 exports.testing = (req, res) => {
     try {
         res.json({ message: 'okkk' })
