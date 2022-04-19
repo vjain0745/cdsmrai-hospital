@@ -8,6 +8,7 @@ const joiValidation = require('../utils/joi_validation');
 router.get("/testing", admin.testing);
 router.post('/createAdmin', joiValidation.createNewUser, admin.createAdmin)
 router.post('/loginAdmin', admin.loginAdmin)
+router.get('/getUserData', jwtAuth.verifyToken, admin.getUserData)
 // router.get('/getAllUsers', Auth.auth, admin.getAllUsers)
 // router.post('/getUserById', Auth.auth, admin.getUsersById)
 // router.post('/deleteUser', Auth.auth, admin.deleteUser)

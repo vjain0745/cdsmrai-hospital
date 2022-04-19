@@ -1,11 +1,13 @@
 const responseHandlers = require("../utils/responses");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const createToken = (details) => {
-    if (details) return jwt.sign(details, process.env.SECRET_KEY);
+    console.log(details);
+    if (details) return jwt.sign(details.toJSON(), process.env.SECRET_KEY);
 };
 
-const verifyToken = async (req, res) => {
+const verifyToken = async (req, res, next) => {
     try {
         let { authorization } = req.headers
         if (authorization) {
@@ -17,7 +19,6 @@ const verifyToken = async (req, res) => {
             if (!decoded) throw new Error(responseHandlers.responseMessages.verificationErrorMessage);
 
             req.userData = decoded;
-            // console.log(req.userData);
             return next();
         }
 
