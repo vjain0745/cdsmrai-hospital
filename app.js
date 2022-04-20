@@ -19,7 +19,7 @@ app.use("/admin", adminRoutes);
 
 app.use("/", express.static(path.join(__dirname, "dist", "cdsmrai-hospital")));
 
-app.get("/", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "cdsmrai-hospital", "index.html"));
 });
 
