@@ -21,7 +21,6 @@ exports.createAdmin = async (req, res) => {
     try {
         let { name, email, password } = req.body
         let uploadData = { name, email, password, role_type: "admin" }
-        uploadData['access_token'] = jwtAuth.createToken(uploadData);
         const user = new UserModel(uploadData);
         user.password = await jwtAuth.generateHash(user.password);
 
@@ -46,11 +45,9 @@ exports.loginAdmin = async (req, res) => {
         let currentAdmin = await mongo.findOne(UserModel, { email })
         if (!currentAdmin) throw new Error(responseHandlers.responseMessages.UserNotExist);
         let token = jwtAuth.createToken(currentAdmin);
-        currentAdmin.access_token = token;
         const validPassword = await jwtAuth.compareHash(password, currentAdmin.password);
         if (validPassword) {
-            await mongo.findOneAndUpdate(UserModel, { _id: currentAdmin._id }, { access_token: currentAdmin['access_token'] })
-            responseHandlers.successHandler(res, responseHandlers.responseMessages.loggedIn, currentAdmin.access_token)
+            responseHandlers.successHandler(res, responseHandlers.responseMessages.loggedIn, token)
         }
         else {
             throw new Error('Email/Password is Wrong')
