@@ -9,10 +9,18 @@ router.get("/testing", admin.testing);
 router.post('/createAdmin', joiValidation.createNewUser, admin.createAdmin)
 router.post('/loginAdmin', admin.loginAdmin)
 router.get('/getUserData', jwtAuth.verifyToken, admin.getUserData)
-// router.get('/getAllUsers', Auth.auth, admin.getAllUsers)
-// router.post('/getUserById', Auth.auth, admin.getUsersById)
-// router.post('/deleteUser', Auth.auth, admin.deleteUser)
-// router.post('/createAndUpdateUser', admin.createAndUpdateUser)
+
+// Wards
+
+router.get('/getAllWards', jwtAuth.verifyToken, admin.getAllWards)
+router.post('/createAndUpdateWard', jwtAuth.verifyToken, admin.createAndUpdateWard)
+router.post('/getWardById', jwtAuth.verifyToken, admin.getWardById)
+router.post('/deleteWardById', jwtAuth.verifyToken, admin.deleteWardById)
+
+// Registration
+
+router.post('/registerPatient', jwtAuth.verifyToken, admin.registerPatient)
+
 
 module.exports = router;
 

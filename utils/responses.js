@@ -7,10 +7,15 @@ const responseMessages = {
     dataNotSaved: "Oops! Something went wrong",
     UserNotExist: "User doesn't exist",
     UserAlreadyExist: 'User already exist!',
-    Nowards : "Np Wards Found",
+    Nowards : "No Wards Found",
     wardSave : "Ward succcessfully Saved",
     wardById : "Ward succcessfully Fetched",
-    allWards: "All Wards succcessfully Fetched"
+    allWards: "All Wards succcessfully Fetched",
+    wardDeleted : "Ward succcessfully Deleted",
+    allRegistrations: "All Patient's Details succcessfully Fetched",
+    patientById : "Patient's Detail succcessfully Fetched",
+    NoPatients : "No Patients Found",
+    PatientSave : "Patient succcessfully Saved",
 };
 
 /**

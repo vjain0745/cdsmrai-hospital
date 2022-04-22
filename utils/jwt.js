@@ -17,7 +17,7 @@ const verifyToken = async (req, res, next) => {
             )
 
             if (!decoded) throw new Error(responseHandlers.responseMessages.verificationErrorMessage);
-
+            if(decoded.role_type !== 'admin') throw new Error(responseHandlers.responseMessages.verificationErrorMessage);
             req.userData = decoded;
             return next();
         }
@@ -25,7 +25,7 @@ const verifyToken = async (req, res, next) => {
         throw new Error(responseHandlers.responseMessages.verificationTokenNotFoundMessage)
 
     } catch (error) {
-        responseHandlers.errorHandler(res, error.message, "")
+        responseHandlers.errorHandler(res, error)
     }
 }
 
