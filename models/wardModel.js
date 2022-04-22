@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 
 const wardSchema = new mongoose.Schema({
     wardName: { type: String, required: 'Ward Name Is Required' },
-    roomStart: { type: Number, required: 'Room Number Is Required' },
-    roomEnd: { type: Number, required: 'Room Number Is Required' },
-    price: { type: Number, required: 'Price is Required' },
-    status: { type: Number, enum: [0, 1], default: 1 },
+    roomStart: { type: String, required: 'Room Number Is Required' },
+    roomEnd: { type: String, required: 'Room Number Is Required' },
+    price: { type: String, required: 'Price is Required' },
+    status: { type: String, enum: ["0", "1"], default: "1" },
 }, {
     timestamps: true
 });

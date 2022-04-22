@@ -9,7 +9,6 @@ const createToken = (details) => {
 
 const verifyToken = async (req, res, next) => {
     try {
-        console.log(req.headers);
         let { authorization } = req.headers
         if (authorization) {
             const decoded = jwt.verify(

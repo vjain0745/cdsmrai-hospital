@@ -5,7 +5,9 @@ exports.create = async (model, body) => {
 
 // find and filter
 exports.find = async (model, filter = {}, projection = {}, pagination = {}, sort = {}) => {
-    return await model.find(filter, projection).skip(pagination.skip).limit(pagination.limit).sort(sort).lean();
+    const promise1 = await model.find(filter, projection).sort(sort).skip(pagination.skip).limit(pagination.page_size).lean();
+    const promise2 = await model.find(filter, projection).sort(sort).lean().count();
+    return result = Promise.all([promise1, promise2])
 }
 
 exports.findOne = async (model, filter, projection = {}) => {

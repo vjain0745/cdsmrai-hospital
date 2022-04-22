@@ -100,9 +100,30 @@ exports.getWardById = async (req, res) => {
 
 exports.getAllWards = async (req, res) => {
     try {
-        let wards = await mongo.find(WardModel)
+        const page_size = parseInt(req.query.page_size || 0);
+        const page_num = parseInt(req.query.page_num || 0);
+        const skip = page_size * (page_num - 1);
+        const searchQuery = req.query.search_query;
+        let searchFiler;
+
+        if (searchQuery) {
+            searchFiler = {
+                $or: [{ wardName: { $regex: searchQuery, $options: "$i" } }
+                    , { price: { $regex: searchQuery } }
+                ]
+            };
+        }
+
+        const pagination = {
+            skip, page_size
+        };
+
+        const sort = { "createdAt": -1 };
+
+        const wards = await mongo.find(WardModel, searchFiler, {}, pagination, sort)
+        const dataFetched = { total_length: wards[1], wards: wards[0] }
         if (wards) {
-            return responseHandlers.successHandler(res, responseHandlers.responseMessages.wardById, wards)
+            return responseHandlers.successHandler(res, responseHandlers.responseMessages.wardById, dataFetched)
         } else {
             throw new Error(responseHandlers.responseMessages.Nowards)
         }
