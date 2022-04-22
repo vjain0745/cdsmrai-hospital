@@ -69,9 +69,9 @@ exports.getUserData = async (req, res) => {
 
 exports.createAndUpdateWard = async (req, res) => {
     try {
-        let { warnName, roomStart, roomEnd, price, wardId } = req.body;
+        let { wardName, roomStart, roomEnd, price, wardId } = req.body;
 
-        let uploadData = { warnName, roomStart, roomEnd, price };
+        let uploadData = { wardName, roomStart, roomEnd, price };
         const savedDetails = await mongo.findOneAndUpsert(WardModel, { _id: new ObjectID(wardId) }, uploadData);
         if (savedDetails) {
             return responseHandlers.successHandler(res, responseHandlers.responseMessages.wardSave, savedDetails)
