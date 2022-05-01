@@ -150,7 +150,7 @@ exports.registerPatient = async (req, res) => {
     try {
         let { patientName, age, gender, mobileNumber, address, email, referredBy, aadharCardNumber, patientAdmitted, ward, doctor, department, panel, billing, patientId, totalAmount, totalDiscountAmount, totalDiscountPercent, paymentMode } = req.body;
 
-        let uploadData = { patientName, age, gender, mobileNumber, address, email, referredBy, aadharCardNumber, patientAdmitted, ward, doctor, department, panel, billing };
+        let uploadData = { patientName, age, gender, mobileNumber, address, email, referredBy, aadharCardNumber, patientAdmitted, ward, doctor, department, panel, billing, totalAmount, totalDiscountAmount, totalDiscountPercent, paymentMode };
 
         const savedDetails = await mongo.findOneAndUpsert(RegistrationModel, { _id: new ObjectID(patientId) }, uploadData);
         if (savedDetails) {
