@@ -20,7 +20,8 @@ router.post('/deleteWardById', jwtAuth.verifyToken, admin.deleteWardById)
 // Registration
 
 router.post('/registerPatient', jwtAuth.verifyToken, admin.registerPatient)
-
+router.get('/getAllPatients', jwtAuth.verifyToken, admin.getAllPatients)
+router.post('/getPatientsById', jwtAuth.verifyToken, admin.getPatientById)
 
 module.exports = router;
 

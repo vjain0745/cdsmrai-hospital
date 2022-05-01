@@ -19,8 +19,8 @@ exports.testing = (req, res) => {
 
 exports.createAdmin = async (req, res) => {
     try {
-        let { name, email, password } = req.body
-        let uploadData = { name, email, password, role_type: "admin" }
+        let { name, email, password, role_type } = req.body
+        let uploadData = { name, email, password, role_type }
         const user = new UserModel(uploadData);
         user.password = await jwtAuth.generateHash(user.password);
 

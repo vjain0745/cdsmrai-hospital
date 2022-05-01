@@ -11,6 +11,7 @@ module.exports.createNewUser = (req, res, next) => {
                 "string.pattern.base": "Please Enter A Valid Email"
             }),
             password: Joi.string().required(),
+            role_type: Joi.string().optional()
         })
 
         const result = schema.validate(body);

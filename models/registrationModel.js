@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const registrationSchema = new mongoose.Schema({
     patientName: { type: String, required: 'Patient Name Is Required' },
-    age: { type: Number, required: 'Age Is Required' },
+    age: { type: String, required: 'Age Is Required' },
     gender: { type: String, enum: ['male', 'female', 'others'], required: 'Gender Is Required' },
-    mobileNumber: { type: Number, required: 'Number Is Required' },
+    mobileNumber: { type: String, required: 'Number Is Required' },
     address: { type: String },
     email: { type: String },
     referredBy: { type: String },
@@ -16,11 +16,11 @@ const registrationSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'wards'
         },
-        roomNumber: { type: Number }
+        roomNumber: { type: String }
     },
     doctor: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'wards'
+        ref: 'users'
     },
     department: { type: String, enum: ['opd', 'emergency', 'others'], required: 'Department Is Required' },
     panel: { type: String, enum: ['general', 'TPA', 'others'], required: 'Panel Is Required' },
